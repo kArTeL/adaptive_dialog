@@ -13,6 +13,8 @@ Future<T?> showAlertDialog<T>({
   required BuildContext context,
   String? title,
   String? message,
+  TextStyle? titleStyle,
+  TextStyle? messageStyle,
   List<AlertDialogAction<T>> actions = const [],
   bool barrierDismissible = true,
   AdaptiveStyle style = AdaptiveStyle.adaptive,
@@ -41,8 +43,11 @@ Future<T?> showAlertDialog<T>({
       onWillPop: onWillPop,
     );
   }
-  final titleText = title == null ? null : Text(title);
-  final messageText = message == null ? null : Text(message);
+  
+  final titleText = title == null ? null : Text(title, 
+  style: titleStyle?? titleStyle);
+  final messageText = message == null ? null :  Text(message, 
+  style: messageStyle?? messageStyle);
   return style.isCupertinoStyle(theme)
       ? showCupertinoDialog(
           context: context,
